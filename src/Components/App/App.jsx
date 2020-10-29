@@ -15,9 +15,9 @@ function App() {
 
 	useEffect(() => {
 		Promise.all([
-			fetch('http://localhost:3040/books').then((res) => res.json()),
-			fetch('http://localhost:3040/members').then((res) => res.json()),
-			fetch('http://localhost:3040/admins').then((res) => res.json()),
+			fetch('https://my-json-server.typicode.com/gnanamozhibalu/lms-backend/books').then((res) => res.json()),
+			fetch('https://my-json-server.typicode.com/gnanamozhibalu/lms-backend/members').then((res) => res.json()),
+			fetch('https://my-json-server.typicode.com/gnanamozhibalu/lms-backend/admins').then((res) => res.json()),
 		])
 			.then(([books, members, admins]) => {
 				setBooks(books.filter((data) => data.issuedBy === null))
@@ -85,7 +85,7 @@ function App() {
 		setBooks(Books.filter((data) => data.id !== id))
 		setIssuedBooks(issuedBooks.concat(tempBook))
 
-		await fetch(`http://localhost:3040/books/${tempBook[0].id}`, {
+		await fetch(`https://my-json-server.typicode.com/gnanamozhibalu/lms-backend/books/${tempBook[0].id}`, {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json',
@@ -100,7 +100,7 @@ function App() {
 		// console.log(tempBook)
 		setIssuedBooks(issuedBooks.filter((data) => data.id !== id))
 		setBooks(Books.concat(tempBook))
-		await fetch(`http://localhost:3040/books/${tempBook[0].id}`, {
+		await fetch(`https://my-json-server.typicode.com/gnanamozhibalu/lms-backend/books/${tempBook[0].id}`, {
 			method: 'PUT',
 			headers: {
 				'Content-Type': 'application/json',
@@ -111,7 +111,7 @@ function App() {
 
 	const deleteBook = async (id) => {
 		setBooks(Books.filter((item) => item.id !== id))
-		await fetch(`http://localhost:3040/books/${id}`, {
+		await fetch(`https://my-json-server.typicode.com/gnanamozhibalu/lms-backend/books/${id}`, {
 			method: 'DELETE',
 		})
 	}
@@ -120,7 +120,7 @@ function App() {
 		setBooks(Books.concat(addData))
 		addData.issuedBy = null
 		setAdminView('default')
-		await fetch('http://localhost:3040/books', {
+		await fetch('https://my-json-server.typicode.com/gnanamozhibalu/lms-backend/books', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
